@@ -1,0 +1,11 @@
+Conta bancaria
+Suponha uma classe que representa um conta bancaria. Nela, afins de simplificação colocamos apenas os atributos nome e saldo. Também usaremos um método responsável por depositar um valor nessa conta bancaria.
+
+O calculo será feito da seguinte forma: o novo saldo será o somatório entre o valor atual mais o deposito acrescido de 10%, ou um fator de  0,10.
+
+Se os atributos puderem ser acessados diretamente em qualquer trecho do código,haverá o risco de o saldo ser alterado sem passar pelo método de depositar. Para evitar isso, podemos usar os métodos get e ser para evitar o acesso direto.
+
+Logo, para proteger as variáveis nome e, principalmente o saldo, utilizamos os métodos get saldo e set saldo. Antes disso, no entanto, é precisa alterar o nível de acesso das variáveis de publica para privade.
+
+Implemente um programa que atenda aos requisitos acima.
+
