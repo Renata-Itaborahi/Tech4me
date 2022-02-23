@@ -121,45 +121,44 @@ public class App {
              voltarMenu(ler);
                 
             } else if (opcao == 4) {
-             System.out.println("------------------------------------");
-             System.out.println("-----VENDAS PERIODO TRABALHADO------");
-             System.out.println("------------------------------------");
-             
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            System.out.print ("Informe a data inicial: ");
-            String dtInicial= ler.nextLine();
+                System.out.println("------------------------------------");
+                System.out.println("-----VENDAS PERIODO TRABALHADO------");
+                System.out.println("------------------------------------");
                 
-            System.out.print ("Informe a data final: ");
-            String dtFinal = ler.nextLine();
-            
-
-             for (Venda dtVenda : venda) {
-                if (dtVenda.isAfter ((String) dtInicial) && dtVenda.isBefore(dtFinal)); 
-             }
-
-        
-             Double filtroRelatorio = venda.stream()
-             .filter(p -> p instanceof Venda)
-             .collect(Collectors.averagingDouble(Venda::getProdVendido));
-             
-             List<Venda> venda1 = obterDados();
-             Map<LocalDate, List<Venda>> vendasPorData;
-
-             vendasPorData = venda1.stream()
-             .collect(Collectors.groupingBy(Venda::getData));
-
-             System.out.println(vendasPorData);
-             
-             vendasPorData.entrySet()
-             .forEach( v -> System.out.printf ("Data: %s - Valor medio da venda: %.2f", 
-              v.getKey().format(formatter), v.getValue())
-             );
-
-             Map<LocalDate, List<Venda>> mediaPorPeriodo = venda.stream()
-             .collect(Collectors.groupingBy(Venda:: getData));
-
-                 voltarMenu(ler); 
-              
+                //Formatador de data
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+               
+                System.out.print ("Informe a data inicial: ");
+                String dtInicial= ler.nextLine();
+                   
+                System.out.print ("Informe a data final: ");
+                String dtFinal = ler.nextLine(); 
+   
+                for (Venda dtVenda : venda) {
+                   if (dtVenda.isAfter ((String) dtInicial) && dtVenda.isBefore(dtFinal)); 
+   
+                List<Venda> vendas = obterDados();
+                Map<LocalDate, List<Venda>> vendasPorData;
+   
+                vendasPorData = vendas.stream()
+                .collect(Collectors.groupingBy(Venda::getData));
+   
+                vendasPorData.entrySet().forEach(v -> System.out.printf("\nData : %s Venda: %s\n", v.getKey(), v.getValue()));
+   
+                System.out.println ("\n---Media dos produtos---");
+   
+                Map<LocalDate, Double> mediaPorPeriodo = vendas.stream()
+                .collect(Collectors.groupingBy(Venda::getData, 
+                Collectors.averagingDouble(Venda::getValorProdVendido)));
+                
+                vendasPorData.entrySet()
+                .forEach( v -> System.out.printf ("Data: %s - Valor medio da venda: %.2f", 
+                 v.getKey().format(formatter), v.getValue())
+                );
+   
+                    voltarMenu(ler); 
+                }
+    
  
              } else if (opcao == 5){
              System.out.println("------------------------------------");

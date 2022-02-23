@@ -11,14 +11,16 @@ public class Venda {
     private LocalDate data;
     private Produto produtos;
     public Object format;
+    private Double valorProdVendido;
 
     //Construtor
     public Venda() {}
     
-    public Venda(Double prodVendido, int qtVendida, LocalDate data) {
+    public Venda(Double prodVendido, int qtVendida, LocalDate data, Double valorProdVendido) {
         this.prodVendido = prodVendido;
         this.qtVendida = qtVendida;
         this.data = data;
+        this.valorProdVendido = valorProdVendido;
     }
     
     public Venda(int qtVendida2, Produto produto) {
@@ -57,10 +59,26 @@ public class Venda {
         this.produtos = produtos;
     }
 
+    public int getQtVendida() {
+        return qtVendida;
+    }
+
+    public void setQtVendida(int qtVendida) {
+        this.qtVendida = qtVendida;
+    }
+
+    public Double getValorProdVendido() {
+        return valorProdVendido;
+    }
+
+    public void setValorProdVendido(Double valorProdVendido) {
+        this.valorProdVendido = valorProdVendido;
+    }
+
     @Override
     public String toString() {
-        return "Venda [\ndata=" + data + "\nprodVendido=" + prodVendido + "\nprodutos=" + produtos + "\nqtVendido="
-                + qtVendida + "]";
+        return String.format("Produto vendido : %s - Data da venda: %s - Quantidade vendiada: %s", getProdVendido(), getData(), getQtVendido());
+               
     }
 
     public boolean contains(String nextLine) {
@@ -80,6 +98,10 @@ public class Venda {
     }
 
     public Object format(Object formatter) {
+        return null;
+    }
+
+    public static Object getValor() {
         return null;
     }  
 }
